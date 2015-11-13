@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 	<html>
-		<script src= "./bower_components/angular/angular.min.js" ></script>
-		<script src= "controller.js" ></script>
+		<script src="./bower_components/angular/angular.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="./bower_components/semantic/dist/semantic.min.css">
+		<script src="./bower_components/semantic/dist/semantic.min.js"></script>
+		<script src="./bower_components/moment/moment.js"></script>
 
+
+		<script src="controller.js" ></script>
 	<body>
+		<div ng-app="app" ng-controller="indexCtrl" class="ui centered container">
+		 	
+		 	<button class="ui button" ng-click="subWeek(4)"> << </button>
+		 	<button class="ui button" ng-click="subWeek(1)"> < </button>
+			<span class="ui huge label" >Kalender Woche: {{getDate()}}</span>
+			<button class="ui button" ng-click="addWeek(1)"> > </button>
+			<button class="ui button" ng-click="addWeek(4)"> >> </button>
 
-		<div ng-app="app" ng-controller="indexCtrl">
-		 	<p>Name: <input type="text" ng-model="name"></p>
-		 	<p ng-bind="name"></p>
+			<ul>
+				<li ng-repeat="day in getCurrentDays()"> <p>{{day}}</p> </li>
+				
+			</ul>
 
-		 	<h1>{{name}}</h1>
 		</div>
-
 	</body>
 </html>
