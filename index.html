@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="./bower_components/semantic/dist/semantic.min.css">
 		<script src="./bower_components/semantic/dist/semantic.min.js"></script>
 		<script src="./bower_components/moment/moment.js"></script>
+		<script src="./parser/parser.js"></script>
 
 
 		<script src="controller.js" ></script>
@@ -24,8 +25,8 @@
 					<p class="content">{{dayInfo.dayName + ": " + dayInfo.day + ". " + dayInfo.monthName}}</p>
 					<input class="description" type="text" size="40" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
 					
-					<p>{{ newObject | json}}</p>
 					<p ng-repeat="s in inputs['input_' + dayInfo.wholeDate].split(',') track by $index"> {{$index + ": " + s}} </p>
+					<p>{{ inputs | json}}</p>
 
 					<br />
 				</div>
