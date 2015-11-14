@@ -9,6 +9,7 @@
 		<script src="controller.js" ></script>
 	<body>
 		<div ng-app="app" ng-controller="indexCtrl" class="ui centered container">
+		 	<br /><br />
 		 	
 		 	<button class="ui button" ng-click="subWeek(4)"> << </button>
 		 	<button class="ui button" ng-click="subWeek(1)"> < </button>
@@ -16,11 +17,16 @@
 			<button class="ui button" ng-click="addWeek(1)"> > </button>
 			<button class="ui button" ng-click="addWeek(4)"> >> </button>
 
-			<ul>
-				<li ng-repeat="day in getCurrentDays()"> <p>{{day}}</p> </li>
-				
-			</ul>
+			<br /><br /><br /><br />
 
+			<div class="ui cards">
+				<div class="card" ng-repeat="day in getCurrentDays()">
+					<p class="content">{{day}}</p>
+					<input class="description" type="text" size="40"/>
+					<br />
+				</div>
+			</div>
+				
 		</div>
 	</body>
 </html>
