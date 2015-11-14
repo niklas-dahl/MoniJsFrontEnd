@@ -19,10 +19,14 @@
 
 			<br /><br /><br /><br />
 
-			<div class="ui cards">
-				<div class="card" ng-repeat="day in getCurrentDays()">
-					<p class="content">{{day}}</p>
-					<input class="description" type="text" size="40"/>
+			<div class="ui blue cards">
+				<div class="card" ng-repeat="dayInfo in getCurrentDays()">
+					<p class="content">{{dayInfo.dayName + ": " + dayInfo.day + ". " + dayInfo.monthName}}</p>
+					<input class="description" type="text" size="40" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
+					
+					<p>{{ newObject | json}}</p>
+					<p ng-repeat="s in inputs['input_' + dayInfo.wholeDate].split(',') track by $index"> {{$index + ": " + s}} </p>
+
 					<br />
 				</div>
 			</div>
