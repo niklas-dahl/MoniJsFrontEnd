@@ -7,7 +7,7 @@ app.controller("indexCtrl", function($scope) {
 	currentWeekDays = [];
 	updateCurremtWeekDays();
 
-	parser = new WorkDayParser(); 
+	//parser = new WorkDayParser(); 
 	//wd = new WorkDay(1, 1, 1, null);
    	
 	$scope.getCurrentDays = function() {
