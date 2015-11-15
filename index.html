@@ -6,24 +6,27 @@
 		<script src="./bower_components/moment/moment.js"></script>
 		<script src="./parser/parser.js"></script>
 
-
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="controller.js" ></script>
 	<body>
-		<div ng-app="app" ng-controller="indexCtrl" class="ui centered container">
-		 	<br /><br />
+			<div id="header" class="ui huge header">
+				<h1>Moni - Stundenabrechnung</h1>	
+			</div>
 		 	
-		 	<button class="ui button" ng-click="subWeek(4)"> << </button>
-		 	<button class="ui button" ng-click="subWeek(1)"> < </button>
-			<span class="ui huge label" >Kalender Woche: {{getDate()}}</span>
-			<button class="ui button" ng-click="addWeek(1)"> > </button>
-			<button class="ui button" ng-click="addWeek(4)"> >> </button>
+		<div ng-app="app" ng-controller="indexCtrl" class="ui centered container" id="mainContainer">
 
-			<br /><br /><br /><br />
+		 	<div class="">
+			 	<button class="ui button" ng-click="subWeek(4)"> << </button>
+			 	<button class="ui button" ng-click="subWeek(1)"> < </button>
+				<span class="ui huge label" >Kalender Woche: {{getDate()}}</span>
+				<button class="ui button" ng-click="addWeek(1)"> > </button>
+				<button class="ui button" ng-click="addWeek(4)"> >> </button>
+			<div>
 
-			<div class="ui blue cards">
+			<div class="ui blue cards" style="margin-top:1em;">
 				<div class="card" ng-repeat="dayInfo in getCurrentDays()">
 					<p class="content">{{dayInfo.dayName + ": " + dayInfo.day + ". " + dayInfo.monthName}}</p>
-					<input class="description" type="text" size="40" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
+					<input style="margin-left:1em;margin-right:1em;" class="description" type="text" size="40" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
 					
 					<p ng-repeat="s in inputs['input_' + dayInfo.wholeDate].split(',') track by $index"> {{$index + ": " + s}} </p>
 					<p>{{ inputs | json}}</p>
