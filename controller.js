@@ -24,7 +24,9 @@ app.controller("indexCtrl", function($scope) {
 				day: weekDate.format("DD"),
 				monthName: weekDate.format("MMMM"),
 				month: weekDate.format("M"),
-				wholeDate: weekDate.format()
+				wholeDate: weekDate.format(),
+				isWeekend: (weekDate.format("dddd")==="Saturday" || weekDate.format("dddd")==="Sunday"),
+				isHoliday: false
 			}
 			if(($scope.activeMonthName === dayInfo.monthName)) {
 				currentWeekDays.push(dayInfo);

@@ -8,9 +8,13 @@
 
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="controller.js" ></script>
+
+		<link rel="icon" href="./res/moni.ico" type="image/vnd.microsoft.icon">
+		<title> Moni </title>
 	<body>
 			<div id="header" class="ui huge header">
-				<h1>Moni - Stundenabrechnung</h1>	
+				<img class="ui image" src="./res/moni.ico"></img>
+				<div class="content" >Moni - Stundenabrechnung</div>	
 			</div>
 		 	
 		<div ng-app="app" ng-controller="indexCtrl" class="ui centered container" id="mainContainer">
@@ -24,9 +28,9 @@
 			<div>
 
 			<div class="ui cards" style="margin-top:1em;">
-				<div class="blue card" ng-repeat="dayInfo in getCurrentDays()">
+				<div class="blue card" ng-repeat="dayInfo in getCurrentDays()"><div ng-class="{greenCard: dayInfo.isWeekend, blueCard: !dayInfo.isWeekend}">
 					<p class="content">{{dayInfo.dayName + ": " + dayInfo.day + ". " + dayInfo.monthName}}</p>
-					<input style="margin-left:1em;margin-right:1em;" class="description" type="text" size="40" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
+					<input style="margin-left:1em;margin-right:1em;" class="description" type="text" size="35" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
 					
 					<p ng-repeat="s in inputs['input_' + dayInfo.wholeDate].split(',') track by $index"> {{$index + ": " + s}} </p>
 					<p>{{ inputs | json}}</p>
@@ -34,7 +38,7 @@
 					<div class="extra">
      			 		Stunden: {{0}}
 				    </div>
-				</div>
+				</div></div>
 			</div>
 				
 		</div>
