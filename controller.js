@@ -3,9 +3,10 @@ var app = angular.module("app", []);
 
 app.controller("indexCtrl", function($scope) {
 	var now = moment();
-	$scope.week = now.week();
+	$scope.activeWeek = now.week();
+	$scope.activeMonthName = now.format("MMMM");
 	currentWeekDays = [];
-	updateCurremtWeekDays();
+	updateCurrentWeekDays();
 
 	//parser = new WorkDayParser(); 
 	//wd = new WorkDay(1, 1, 1, null);
@@ -14,9 +15,9 @@ app.controller("indexCtrl", function($scope) {
 		return currentWeekDays;
 	}
 	
-	function updateCurremtWeekDays() {
+	function updateCurrentWeekDays() {
 		currentWeekDays = [];
-		var weekDate = moment().week($scope.week).startOf("isoweek");
+		var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
 		for(i=0; i < 7; i++) {
 			var dayInfo = {
 				dayName: weekDate.format("dddd"),
@@ -25,21 +26,34 @@ app.controller("indexCtrl", function($scope) {
 				month: weekDate.format("M"),
 				wholeDate: weekDate.format()
 			}
-			currentWeekDays.push(dayInfo);
+			if(($scope.activeMonthName === dayInfo.monthName)) {
+				currentWeekDays.push(dayInfo);
+			}
 			weekDate.add(1, "day")
 		}
 	}
 
 	$scope.addWeek = function(n) {
-		$scope.week += n;
-		updateCurremtWeekDays();
+		$scope.activeWeek += n;
+		var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
+		if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
+			$scope.activeWeek -= n;
+			$scope.activeMonthName = weekDate.format("MMMM");
+		}
+
+		updateCurrentWeekDays();
 	}
 	$scope.subWeek = function(n) {
-		$scope.week -= n;
-		updateCurremtWeekDays();
+		$scope.activeWeek -= n;
+		var weekDate = moment().week($scope.activeWeek).startOf("isoweek").add(6, "day");
+		if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
+			$scope.activeWeek += n;
+			$scope.activeMonthName = weekDate.format("MMMM");
+		}
+		updateCurrentWeekDays();
 	}
 	$scope.getDate = function() {
-		return moment().week($scope.week).format("W, MMMM");
+		return moment().week($scope.activeWeek).format("W, MMMM");
 	}
 
 });

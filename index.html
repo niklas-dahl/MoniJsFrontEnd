@@ -18,20 +18,22 @@
 		 	<div class="">
 			 	<button class="ui button" ng-click="subWeek(4)"> << </button>
 			 	<button class="ui button" ng-click="subWeek(1)"> < </button>
-				<span class="ui huge label" >Kalender Woche: {{getDate()}}</span>
+				<span class="ui huge label" > {{"Kalender Woche: " + activeWeek + ", " + activeMonthName}} </span>
 				<button class="ui button" ng-click="addWeek(1)"> > </button>
 				<button class="ui button" ng-click="addWeek(4)"> >> </button>
 			<div>
 
-			<div class="ui blue cards" style="margin-top:1em;">
-				<div class="card" ng-repeat="dayInfo in getCurrentDays()">
+			<div class="ui cards" style="margin-top:1em;">
+				<div class="blue card" ng-repeat="dayInfo in getCurrentDays()">
 					<p class="content">{{dayInfo.dayName + ": " + dayInfo.day + ". " + dayInfo.monthName}}</p>
 					<input style="margin-left:1em;margin-right:1em;" class="description" type="text" size="40" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
 					
 					<p ng-repeat="s in inputs['input_' + dayInfo.wholeDate].split(',') track by $index"> {{$index + ": " + s}} </p>
 					<p>{{ inputs | json}}</p>
 
-					<br />
+					<div class="extra">
+     			 		Stunden: {{0}}
+				    </div>
 				</div>
 			</div>
 				
