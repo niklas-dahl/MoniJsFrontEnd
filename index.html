@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-	<html>
+	<html> <head>
 		<script src="./bower_components/angular/angular.min.js" ></script>
 		<link rel="stylesheet" type="text/css" href="./bower_components/semantic/dist/semantic.min.css">
 		<script src="./bower_components/semantic/dist/semantic.min.js"></script>
@@ -11,21 +11,24 @@
 
 		<link rel="icon" href="./res/moni.ico" type="image/vnd.microsoft.icon">
 		<title> Moni </title>
-	<body>
-			<div id="header" class="ui huge header">
-				<img class="ui image" src="./res/moni.ico"></img>
-				<div class="content" >Moni - Stundenabrechnung</div>	
-			</div>
+	
+	</head> 
+	<body ng-app="app" ng-controller="indexCtrl">
+		<div id="header" class="ui huge header">
+			<img class="ui image" src="./res/moni.ico"></img>
+			<div class="content" >Moni - Stundenabrechnung</div>	
+		</div>
 		 	
-		<div ng-app="app" ng-controller="indexCtrl" class="ui centered container" id="mainContainer">
+		<div id="masterGrid">
+		<div id="mainContainer">
 
 		 	<div class="">
-			 	<button class="ui button" ng-click="subWeek(4)"> << </button>
+			 	<button class="ui button" ng-click="subWeek(5)"> << </button>
 			 	<button class="ui button" ng-click="subWeek(1)"> < </button>
 				<span class="ui huge label" > {{"Kalender Woche: " + activeWeek + ", " + activeMonthName}} </span>
 				<button class="ui button" ng-click="addWeek(1)"> > </button>
-				<button class="ui button" ng-click="addWeek(4)"> >> </button>
-			<div>
+				<button class="ui button" ng-click="addWeek(5)"> >> </button>
+			</div>
 
 			<div class="ui cards" style="margin-top:1em;">
 				<div class="blue card" ng-repeat="dayInfo in getCurrentDays()"><div ng-class="{greenCard: dayInfo.isWeekend, blueCard: !dayInfo.isWeekend}">
@@ -42,5 +45,19 @@
 			</div>
 				
 		</div>
+
+		<div id="shortCutContainer">
+			<p>jkas</p>
+			<p>Hallo</p>
+			<p>Hallo</p>
+			<p>Hallo</p>
+			<p>Hallo</p>
+			<p>Hallo</p>
+			<p>Hallo</p>
+			<p>Hallo</p>
+			<p>Hallo</p>
+		</div>
+		</div>
+
 	</body>
 </html>

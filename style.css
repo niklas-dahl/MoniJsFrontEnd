@@ -16,10 +16,16 @@ body {
 /* Moni color rgb(65,177,225) */
 #mainContainer {
 	background-color: white;
-	
+	//width: 1000px;
+	width: 70%;
+	max-width: 1000px;
+
+	float: left;
+
 	padding-left:3em;
 	padding-top:3em;
 	margin-top:1em;
+	margin-left: 1em;
 	height: 1000px;
 
 	/*border: 2px solid black;*/
@@ -28,6 +34,25 @@ body {
 	/*border-left:3px solid navy;
 	border-right:3px solid navy;
 	*/
+}
+
+#masterGrid {		    
+	width: 100%;
+	margin: auto;
+}
+
+#shortCutContainer {
+	background-color: white;
+	width: 20%;
+	min-width: 100px;
+	float: right;
+
+	padding-left:3em;
+	padding-top:3em;
+	margin-top:1em;
+	margin-right: 1em;
+
+	border-radius: 1em;
 }
 
 .greenCard {

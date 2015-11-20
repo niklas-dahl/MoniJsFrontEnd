@@ -36,20 +36,24 @@ app.controller("indexCtrl", function($scope) {
 	}
 
 	$scope.addWeek = function(n) {
-		$scope.activeWeek += n;
+		if(n > 1) $scope.addWeek(n-1);
+
+		$scope.activeWeek += 1;
 		var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
 		if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
-			$scope.activeWeek -= n;
+			$scope.activeWeek -= 1;
 			$scope.activeMonthName = weekDate.format("MMMM");
 		}
 
 		updateCurrentWeekDays();
 	}
 	$scope.subWeek = function(n) {
-		$scope.activeWeek -= n;
+		if(n > 1) $scope.subWeek(n-1);
+		
+		$scope.activeWeek -= 1;
 		var weekDate = moment().week($scope.activeWeek).startOf("isoweek").add(6, "day");
 		if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
-			$scope.activeWeek += n;
+			$scope.activeWeek += 1;
 			$scope.activeMonthName = weekDate.format("MMMM");
 		}
 		updateCurrentWeekDays();
