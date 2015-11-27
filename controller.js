@@ -8,8 +8,7 @@ app.controller("indexCtrl", function($scope) {
 	currentWeekDays = [];
 	updateCurrentWeekDays();
 
-	//parser = new WorkDayParser(); 
-	//wd = new WorkDay(1, 1, 1, null);
+	//console.log(JSON.stringify(DescriptionParser))
    	
 	$scope.getCurrentDays = function() {
 		return currentWeekDays;

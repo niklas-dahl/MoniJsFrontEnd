@@ -1,0 +1,19 @@
+{
+  "name": "monijsfontend",
+  "version": "1.0.0",
+  "description": "Front end for MoniJs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niklas-dahl/MoniJsFrontEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niklas-dahl/MoniJsFrontEnd/issues"
+  },
+  "homepage": "https://github.com/niklas-dahl/MoniJsFrontEnd#readme"
+}
