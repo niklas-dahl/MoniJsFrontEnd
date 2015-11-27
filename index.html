@@ -31,7 +31,7 @@
 			</div>
 
 			<div class="ui cards" style="margin-top:1em;">
-				<div class="blue card" ng-repeat="dayInfo in getCurrentDays()"><div ng-class="{greenCard: dayInfo.isWeekend, blueCard: !dayInfo.isWeekend}">
+				<div class="card" ng-repeat="dayInfo in getCurrentDays()"><div ng-class="{greenCard: dayInfo.isWeekend, blueCard: !dayInfo.isWeekend}">
 					<p class="content">{{dayInfo.dayName + ": " + dayInfo.day + ". " + dayInfo.monthName}}</p>
 					<input style="margin-left:1em;margin-right:1em;" class="description" type="text" size="35" ng-model="inputs['input_' + dayInfo.wholeDate]"/>
 					
