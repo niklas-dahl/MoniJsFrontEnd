@@ -8,9 +8,9 @@
 
   WorkItem = require('./workitem');
 
-  TimeItem = require('./timeitem.coffee');
+  TimeItem = require('./timeitem.js');
 
-  ShortCut = require('./shortcut.coffee');
+  ShortCut = require('./shortcut.js');
 
   WorkDayParserSettings = require('./workdayparsersetting');
 
