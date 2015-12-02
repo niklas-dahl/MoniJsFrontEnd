@@ -35,6 +35,7 @@ app.controller("indexCtrl", function($scope) {
 	}
 
 	$scope.addWeek = function(n) {
+		console.log("Add week" + n);
 		if(n > 1) $scope.addWeek(n-1);
 
 		$scope.activeWeek += 1;
@@ -62,3 +63,33 @@ app.controller("indexCtrl", function($scope) {
 	}
 
 });
+
+$(document)
+        .ready(function() {
+
+          // fix main menu to page on passing
+          $('.main.menu').visibility({
+            type: 'fixed'
+          });
+
+      });
+
+        function hide() {
+        	var scope = angular.element(document.getElementById('html')).scope();
+
+          var animation = {
+            animation : 'fade right',
+            duration  : 200,
+            onComplete: function() {
+              scope.$apply(function () {
+              	scope.addWeek(1);
+              });
+            }
+          };
+          var animation2 = {
+            animation : 'fade left',
+            duration  : 200
+          };
+          $('.ui.cards').transition(animation).transition(animation2);
+          
+        }
