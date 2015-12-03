@@ -5,6 +5,8 @@ app.controller("indexCtrl", function($scope) {
 	var now = moment();
 	$scope.activeWeek = now.week();
 	$scope.activeMonthName = now.format("MMMM");
+	$scope.activeYear = parseInt(now.format("YYYY"));
+
 	currentWeekDays = [];
 	updateCurrentWeekDays();
 
@@ -16,7 +18,7 @@ app.controller("indexCtrl", function($scope) {
 	
 	function updateCurrentWeekDays() {
 		currentWeekDays = [];
-		var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
+		var weekDate = moment().year($scope.activeYear).week($scope.activeWeek).startOf("isoweek");
 		for(i=0; i < 7; i++) {
 			var dayInfo = {
 				dayName: weekDate.format("dddd"),
@@ -36,13 +38,19 @@ app.controller("indexCtrl", function($scope) {
 
 	$scope.addWeek = function(n) {
 		for(var i = 0; i < n; i++) {
+
 			$scope.activeWeek += 1;
 			var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
 			if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
 				$scope.activeWeek -= 1;
 				$scope.activeMonthName = weekDate.format("MMMM");
 			}
-
+			if(! (parseInt(weekDate.format("YYYY")) === $scope.activeYear)) {
+				$scope.activeYear += 1;
+				$scope.activeWeek = 1;
+				console.log("year change !");
+			}
+ 
 			updateCurrentWeekDays();
 		}
 	}
@@ -64,10 +72,9 @@ app.controller("indexCtrl", function($scope) {
 });
 
 $(document).ready(function() {
-
     // fix main menu to page on passing
     $('.main.menu').visibility({
-    type: 'fixed'
+    	type: 'fixed'
     });
 
 });
@@ -75,7 +82,7 @@ $(document).ready(function() {
 function addWeek(n) {
   	var scope = angular.element(document.getElementById('html')).scope();
     var animation = {
-        animation : 'fade left',
+        animation : 'fade right',
         duration  : 200,
         onComplete: function() {
             scope.$apply(function () {
@@ -84,7 +91,7 @@ function addWeek(n) {
         }
         };
     var animation2 = {
-        animation : 'fade right',
+        animation : 'fade left',
         duration  : 200
     };
     $('.ui.cards').transition(animation).transition(animation2); 
@@ -93,7 +100,7 @@ function addWeek(n) {
 function subWeek(n) {
   	var scope = angular.element(document.getElementById('html')).scope();
     var animation = {
-        animation : 'fade right',
+        animation : 'fade left',
         duration  : 200,
         onComplete: function() {
             scope.$apply(function () {
@@ -102,7 +109,7 @@ function subWeek(n) {
         }
         };
     var animation2 = {
-        animation : 'fade left',
+        animation : 'fade right',
         duration  : 200
     };
     $('.ui.cards').transition(animation).transition(animation2); 
