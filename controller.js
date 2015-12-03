@@ -35,28 +35,27 @@ app.controller("indexCtrl", function($scope) {
 	}
 
 	$scope.addWeek = function(n) {
-		console.log("Add week" + n);
-		if(n > 1) $scope.addWeek(n-1);
+		for(var i = 0; i < n; i++) {
+			$scope.activeWeek += 1;
+			var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
+			if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
+				$scope.activeWeek -= 1;
+				$scope.activeMonthName = weekDate.format("MMMM");
+			}
 
-		$scope.activeWeek += 1;
-		var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
-		if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
-			$scope.activeWeek -= 1;
-			$scope.activeMonthName = weekDate.format("MMMM");
+			updateCurrentWeekDays();
 		}
-
-		updateCurrentWeekDays();
 	}
 	$scope.subWeek = function(n) {
-		if(n > 1) $scope.subWeek(n-1);
-		
-		$scope.activeWeek -= 1;
-		var weekDate = moment().week($scope.activeWeek).startOf("isoweek").add(6, "day");
-		if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
-			$scope.activeWeek += 1;
-			$scope.activeMonthName = weekDate.format("MMMM");
+		for(var i = 0; i < n; i++) {
+			$scope.activeWeek -= 1;
+			var weekDate = moment().week($scope.activeWeek).startOf("isoweek").add(6, "day");
+			if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
+				$scope.activeWeek += 1;
+				$scope.activeMonthName = weekDate.format("MMMM");
+			}
+			updateCurrentWeekDays();		
 		}
-		updateCurrentWeekDays();
 	}
 	$scope.getDate = function() {
 		return moment().week($scope.activeWeek).format("W, MMMM");
@@ -64,32 +63,47 @@ app.controller("indexCtrl", function($scope) {
 
 });
 
-$(document)
-        .ready(function() {
+$(document).ready(function() {
 
-          // fix main menu to page on passing
-          $('.main.menu').visibility({
-            type: 'fixed'
-          });
+    // fix main menu to page on passing
+    $('.main.menu').visibility({
+    type: 'fixed'
+    });
 
-      });
+});
 
-        function hide() {
-        	var scope = angular.element(document.getElementById('html')).scope();
-
-          var animation = {
-            animation : 'fade right',
-            duration  : 200,
-            onComplete: function() {
-              scope.$apply(function () {
-              	scope.addWeek(1);
-              });
-            }
-          };
-          var animation2 = {
-            animation : 'fade left',
-            duration  : 200
-          };
-          $('.ui.cards').transition(animation).transition(animation2);
-          
+function addWeek(n) {
+  	var scope = angular.element(document.getElementById('html')).scope();
+    var animation = {
+        animation : 'fade left',
+        duration  : 200,
+        onComplete: function() {
+            scope.$apply(function () {
+           	scope.addWeek(n);
+        });
         }
+        };
+    var animation2 = {
+        animation : 'fade right',
+        duration  : 200
+    };
+    $('.ui.cards').transition(animation).transition(animation2); 
+}
+
+function subWeek(n) {
+  	var scope = angular.element(document.getElementById('html')).scope();
+    var animation = {
+        animation : 'fade right',
+        duration  : 200,
+        onComplete: function() {
+            scope.$apply(function () {
+           	scope.subWeek(n);
+        });
+        }
+        };
+    var animation2 = {
+        animation : 'fade left',
+        duration  : 200
+    };
+    $('.ui.cards').transition(animation).transition(animation2); 
+}

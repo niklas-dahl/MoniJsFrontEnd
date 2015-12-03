@@ -34,11 +34,11 @@
     <div id="mainContainer">
 
       <div class="">
-        <button class="ui button" onclick="hide()" ng-click="subWeek(5);"> << </button>
-        <button class="ui button" onclick="hide()" ng-click="subWeek(1)"> < </button>
+        <button class="ui button" onclick="addWeek(5)" > << </button>
+        <button class="ui button" onclick="addWeek(1)" > < </button>
         <span class="ui huge label" > {{"Kalender Woche: " + activeWeek + ", " + activeMonthName}} </span>
-        <button class="ui button" onclick="hide()"> > new </button>
-        <button class="ui button" onclick="hide()" ng-click="addWeek(5)"> >> </button>
+        <button class="ui button" onclick="subWeek(1)"> > </button>
+        <button class="ui button" onclick="subWeek(5)"> >> </button>
       </div>
 
       <div class="ui cards" style="margin-top:1em;">
