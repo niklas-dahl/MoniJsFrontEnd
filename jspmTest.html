@@ -1,0 +1,24 @@
+<!doctype html>
+<head>
+
+	<title>JSPM Test</title>
+
+</head>
+<body>
+
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+  <script>
+    System.import('lib/main.js');
+    System.import('./test.coffee!').then(function (test) {
+    	var t = new test('Test', 81273);
+    	console.log(t);
+  	})
+
+  	System.import('./parser/parser.js').then(function (WorkDayParser) {
+    	var workDayParser = new WorkDayParser();
+    	console.log(workDayParser);
+  	})
+  </script>
+	
+</body>

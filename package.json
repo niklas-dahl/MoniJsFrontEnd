@@ -15,5 +15,18 @@
   "bugs": {
     "url": "https://github.com/niklas-dahl/MoniJsFrontEnd/issues"
   },
-  "homepage": "https://github.com/niklas-dahl/MoniJsFrontEnd#readme"
+  "homepage": "https://github.com/niklas-dahl/MoniJsFrontEnd#readme",
+  "jspm": {
+    "dependencies": {
+      "coffee": "github:forresto/system-coffee@^0.1.2",
+      "lodash": "npm:lodash@^3.10.1",
+      "lodash-node": "npm:lodash-node@^3.10.1",
+      "string": "npm:string@^3.3.1"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  }
 }

@@ -1,0 +1,5 @@
+ToDo:
+	Alles mit Jade
+	JQuery Problem -> ng-animate
+	parser einbauen
+	

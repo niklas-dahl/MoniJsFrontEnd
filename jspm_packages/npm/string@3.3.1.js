@@ -1,0 +1,1 @@
+module.exports = require("npm:string@3.3.1/lib/string");
