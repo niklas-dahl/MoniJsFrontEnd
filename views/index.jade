@@ -1,0 +1,48 @@
+doctype html
+html#html(ng-app='app', ng-controller='indexCtrl')
+  head
+    // Angular JQuery
+    script(src='./bower_components/angular/angular.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    // Semantic
+    link(rel='stylesheet', type='text/css', href='./bower_components/semantic/dist/semantic.min.css')
+    script(src='./bower_components/semantic/dist/semantic.min.js')
+    // Moment
+    script(src='./bower_components/moment/moment.js')
+    // Parser
+    script(src='./parser/bundle.js')
+    // CSS and Js
+    link(rel='stylesheet', type='text/css', href='style.css')
+    script(src='controller.js')
+    // Icon and title
+    link(rel='icon', href='./res/moni.ico', type='image/vnd.microsoft.icon')
+    title  Moni 
+  body
+    #header.ui.borderless.main.menu
+      .ui.large.header(style='color: white;')
+        img.logo(src='./res/moni.ico')
+        |         Moni - Stundenabrechnung (WIP)
+    #masterGrid
+      #mainContainer
+        div
+          button.ui.button(onclick='subWeek(5)')  << 
+          button.ui.button(onclick='subWeek(1)')  < 
+          span.ui.huge.label
+            | {{"Kalender Woche: " + activeWeek + ", " + activeMonthName + " " + activeYear}}
+          button.ui.button(onclick='addWeek(1)')  > 
+          button.ui.button(onclick='addWeek(5)')  >> 
+        .ui.cards(style='margin-top:1em;')
+          .card(ng-repeat='dayInfo in getCurrentDays()')
+            div(ng-class='{greenCard: dayInfo.isWeekend, blueCard: !dayInfo.isWeekend}')
+              p.content {{dayInfo.dayName + ": " + dayInfo.day + ". " + dayInfo.monthName}}
+              input.description(style='margin-left:1em;margin-right:1em;', type='text', size='35', ng-model="inputs['input_' + dayInfo.wholeDate]")
+              p(ng-repeat="s in inputs['input_' + dayInfo.wholeDate].split(',') track by $index")  {{$index + ": " + s}} 
+              p {{ inputs | json}}
+              .extra
+                | Stunden: {{0}}
+      #shortCutContainer
+        h1 Shortcuts
+        p ctb - dudud
+        p ktl - dadada
+        p Hallo
+        p Hallo
