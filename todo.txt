@@ -1,5 +1,5 @@
 ToDo:
-	Alles mit Jade
+	done Alles mit Jade
 	JQuery Problem -> ng-animate
 	parser einbauen
 	

@@ -2,11 +2,10 @@ var express = require('express');
 var app = express();
 var jade = require('jade');
 
-/*app.get('/', function (req, res) {
-  res.send(jade.renderFile('index.jade'));
-});*/
 
 app.set('view engine', 'jade');
+
+app.use(require('less-middleware')({ src: __dirname + '/' }));
 
 app.get('/', function (req, res) {
   res.render('index');

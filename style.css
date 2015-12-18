@@ -52,6 +52,10 @@ body {
 	border-radius: 10px;
 }
 
+.card {
+	
+}
+
 .greenCard {
 	padding: .5em;
 	background-color: rgb(144, 238, 144);

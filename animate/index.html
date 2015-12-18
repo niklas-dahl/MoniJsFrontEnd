@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+
+<head>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="http://code.angularjs.org/1.2.0rc1/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0rc1/angular-animate.min.js"></script>
+  <script src="script.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+
+<body ng-controller="MainCtrl">
+  <h1>ngRepeat</h1>
+  <div class="g-recaptcha" data-sitekey="6LcWFxMTAAAAAHAyLc7dfCrUiGyknCFADjliOTQQ"></div>
+  
+  <p>
+    <button ng-click="push()">Enter Animation</button>
+    <button ng-click="pop()">Leave Animation</button>
+    <hr>
+    <ul>
+      <li ng-repeat="item in items" class="animation">{{item}}</li>
+    </ul>
+</body>
+
+</html>

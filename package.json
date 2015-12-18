@@ -30,6 +30,12 @@
     }
   },
   "dependencies": {
-    "jade": "^1.11.0"
+    "d3": "^3.5.11",
+    "jade": "^1.11.0",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {
+    "less": "^2.5.3",
+    "less-middleware": "^2.0.1"
   }
 }

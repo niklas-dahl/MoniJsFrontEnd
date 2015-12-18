@@ -1,23 +1,17 @@
 
 var app = angular.module("app", []);
 
-app.controller("indexCtrl", function($scope) {
+app.controller("indexCtrl", function($scope, $timeout, $animate) {
 	var now = moment();
 	$scope.activeWeek = now.week();
 	$scope.activeMonthName = now.format("MMMM");
 	$scope.activeYear = parseInt(now.format("YYYY"));
 
-	currentWeekDays = [];
+	$scope.currentWeekDays = [];
 	updateCurrentWeekDays();
-
-	//console.log(JSON.stringify(DescriptionParser))
-   	
-	$scope.getCurrentDays = function() {
-		return currentWeekDays;
-	}
 	
 	function updateCurrentWeekDays() {
-		currentWeekDays = [];
+		$scope.currentWeekDays = [];
 		var weekDate = moment().year($scope.activeYear).week($scope.activeWeek).startOf("isoweek");
 		for(i=0; i < 7; i++) {
 			var dayInfo = {
@@ -30,31 +24,41 @@ app.controller("indexCtrl", function($scope) {
 				isHoliday: false
 			}
 			if(($scope.activeMonthName === dayInfo.monthName)) {
-				currentWeekDays.push(dayInfo);
+				$scope.currentWeekDays.push(dayInfo);
 			}
 			weekDate.add(1, "day")
 		}
 	}
 
 	$scope.addWeek = function(n) {
-		for(var i = 0; i < n; i++) {
+		$scope.containerClass = "{slideOutLeft: true}";
+		console.log("class set");
+		$timeout(increment, 500);
+		$timeout(function () { $scope.containerClass = "{slideInRight: true}"; } , 1000);
 
-			$scope.activeWeek += 1;
-			var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
-			if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
-				$scope.activeWeek -= 1;
-				$scope.activeMonthName = weekDate.format("MMMM");
+		function increment () {
+			for(var i = 0; i < n; i++) {
+
+				$scope.activeWeek += 1;
+				var weekDate = moment().week($scope.activeWeek).startOf("isoweek");
+				if(! (weekDate.format("MMMM") === $scope.activeMonthName)) {
+					$scope.activeWeek -= 1;
+					$scope.activeMonthName = weekDate.format("MMMM");
+				}
+				if(! (parseInt(weekDate.format("YYYY")) === $scope.activeYear)) {
+					$scope.activeYear += 1;
+					$scope.activeWeek = 1;
+					console.log("year change !");
+				}
+	 
+				updateCurrentWeekDays();
 			}
-			if(! (parseInt(weekDate.format("YYYY")) === $scope.activeYear)) {
-				$scope.activeYear += 1;
-				$scope.activeWeek = 1;
-				console.log("year change !");
-			}
- 
-			updateCurrentWeekDays();
 		}
+
 	}
 	$scope.subWeek = function(n) {
+		
+		
 		for(var i = 0; i < n; i++) {
 			$scope.activeWeek -= 1;
 			var weekDate = moment().week($scope.activeWeek).startOf("isoweek").add(6, "day");
@@ -69,6 +73,18 @@ app.controller("indexCtrl", function($scope) {
 		return moment().week($scope.activeWeek).format("W, MMMM");
 	}
 
+
+  $scope.items = ['asd'];
+
+  $scope.push = function() {
+    console.log('asd');
+    $scope.items.push(+new Date());
+  };
+
+  $scope.pop = function() {
+    $scope.items.pop();
+  };
+
 });
 
 $(document).ready(function() {
@@ -77,40 +93,6 @@ $(document).ready(function() {
     	type: 'fixed'
     });
 
+    //jQuery('.slide').transition('scale').transition('scale');
+    //jQuery('.slide').fadeOut(1000);
 });
-
-function addWeek(n) {
-  	var scope = angular.element(document.getElementById('html')).scope();
-    var animation = {
-        animation : 'fade right',
-        duration  : 200,
-        onComplete: function() {
-            scope.$apply(function () {
-           	scope.addWeek(n);
-        });
-        }
-        };
-    var animation2 = {
-        animation : 'fade left',
-        duration  : 200
-    };
-    $('.ui.cards').transition(animation).transition(animation2); 
-}
-
-function subWeek(n) {
-  	var scope = angular.element(document.getElementById('html')).scope();
-    var animation = {
-        animation : 'fade left',
-        duration  : 200,
-        onComplete: function() {
-            scope.$apply(function () {
-           	scope.subWeek(n);
-        });
-        }
-        };
-    var animation2 = {
-        animation : 'fade right',
-        duration  : 200
-    };
-    $('.ui.cards').transition(animation).transition(animation2); 
-}
